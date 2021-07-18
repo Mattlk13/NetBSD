@@ -1,5 +1,5 @@
 .. 
- Copyright (c) 2015-8 Jun Ebihara All rights reserved.
+ Copyright (c) 2015-2020 Jun Ebihara All rights reserved.
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
  are met:
@@ -49,7 +49,9 @@ Maps:
  2015 Niigata,9/5,130,17,ほんぽーと新潟市立中央図書館
  2016 Nagaoka,10/1,100,13,まちなかキャンパス長岡
  2017 Nagaoka,10/28,120,12,長岡技術科学大学
- 2018 Niigata,11/10,,14,ほんぽーと新潟市立中央図書館
+ 2018 Niigata,11/10,70,13,ほんぽーと新潟市立中央図書館
+ 2019 Niigata,10/5,50,15,ほんぽーと新潟市立中央図書館
+ 2020 Niigata,7/25,,,オンライン開催
 
 観光ガイドバックナンバー 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,6 +63,8 @@ https://github.com/ebijun/osc-demo　にあります。
  :widths: 20 30 80
 
  No,イベント,URL
+ 156,OSC2020新潟,http://www.re.soum.co.jp/~jun/OSC2020niigata.pdf
+ 148,OSC2019新潟,http://www.re.soum.co.jp/~jun/OSC2019niigata.pdf
  134,OSC2018新潟,http://www.re.soum.co.jp/~jun/OSC2018niigata.pdf
  116,OSC2017長岡,http://www.re.soum.co.jp/~jun/OSC2017nagaoka.pdf
  96,OSC2016長岡,http://www.re.soum.co.jp/~jun/OSC2016nagaoka.pdf
@@ -73,6 +77,7 @@ togetterまとめ
 .. csv-table::
  :widths: 80 80
 
+ OSC2019新潟 NetBSDブース展示の記録,https://togetter.com/li/1413105
  OSC2018新潟 NetBSDブース展示の記録,https://togetter.com/li/1286767
  OSC2017長岡 NetBSDブース展示の記録,https://togetter.com/li/1165451
  OSC2016長岡 NetBSDブース展示の記録,https://togetter.com/li/1031383
@@ -84,13 +89,12 @@ togetterまとめ
 .. csv-table::
  :widths: 60 30 60
 
- 駅前クラフトビール館,駅南口,立ち飲みS500円　タップ多数
- オリーブ,駅前楽天地,10タップ　まさしく楽天地
- 沼垂ビール,沼垂,ぬったりビール。ほんぽーと徒歩5分。
- 衆楽,沼垂,ラーチャン＆カレー。
  Bier Bar Ferkel,古町,ドイツビール
+ 沼垂ビール,沼垂,ぬったりビール。ほんぽーと徒歩5分。2020/8/1新ブルワリー
+ オリーブ,駅前楽天地,10タップ　まさしく楽天地
+ 衆楽,沼垂,ラーチャン＆カレー。
  河竹鮨,新潟駅,地魚おまかせ握り
- とんかつかねこ,新潟大五十嵐キャンパス,タレかつ丼　チャレンジ丼ポカリスエット付き
+ とんかつかねこ,中央区横七番町通,タレかつ丼　弁当　
  Joestar,新潟駅,15タップ
  bullet,東掘通x鍛治小路交差点,奇盤多数の輸入レコード店
  清水酒店,万代橋,地酒地ビール充実
@@ -115,7 +119,7 @@ togetterまとめ
  越後妻有,十日町,大地の芸術祭 越後妻有アートトリエンナーレ2015 2015/9/13まで [EBUG-talk 479]
  原田屋旅館,十日町,EBUGミーティングと越後妻有トリエンナーレの宿 [EBUG-talk 479]
  The Liffey Tavern2,古町,中華カトウ近くのアイリッシュパブ
- マンガの家,古町,わたしのマーガレット展 ドカベンの銅像と一緒にまわりたい
+ マンガの家,古町,きらら展 in 新潟 ドカベンの銅像と一緒にまわりたい
  水と土の芸術祭,全域,万代島緑地 新潟織夢－Dream of Niigata
  SWANLAKE Pub Edo,代々木上原,東京代々木上原駅にあるスワンレイクのビアバー
  Rhino,坂之上,クラフトビール
@@ -128,6 +132,42 @@ togetterまとめ
  音色,東坂之上町,ジャズ喫茶/ライブ
  中華大吉,殿町,24:00-4:00 日曜休
  雑本堂,東坂之上町,古書 映画関連
+ MLB taproom bow,見附市,12:00-14:00 19:00-24:00 
+
+2019年
+---------------
+
+.. image::  ../Picture/2019/10/05/DSC_7780.JPG
+.. image::  ../Picture/2019/10/05/DSC_7782.JPG
+.. image::  ../Picture/2019/10/05/DSC_7783.JPG
+.. image::  ../Picture/2019/10/05/DSC_7791.JPG
+.. image::  ../Picture/2019/10/05/DSC_7792.JPG
+.. image::  ../Picture/2019/10/05/DSC_7793.JPG
+.. image::  ../Picture/2019/10/05/DSC_7796.JPG
+.. image::  ../Picture/2019/10/05/DSC_7797.JPG
+.. image::  ../Picture/2019/10/05/DSC_7798.JPG
+.. image::  ../Picture/2019/10/05/DSC_7802.JPG
+.. image::  ../Picture/2019/10/05/DSC_7805.JPG
+.. image::  ../Picture/2019/10/05/DSC_7812.JPG
+.. image::  ../Picture/2019/10/05/DSC_7813.JPG
+.. image::  ../Picture/2019/10/05/DSC_7814.JPG
+.. image::  ../Picture/2019/10/05/DSC_7815.JPG
+.. image::  ../Picture/2019/10/05/DSC_7816.JPG
+.. image::  ../Picture/2019/10/05/DSC_7817.JPG
+.. image::  ../Picture/2019/10/05/DSC_7818.JPG
+
+2018年
+---------------
+
+.. image::  ../Picture/2018/11/10/DSC_6264.JPG
+.. image::  ../Picture/2018/11/10/DSC_6265.JPG
+.. image::  ../Picture/2018/11/10/DSC_6266.JPG
+.. image::  ../Picture/2018/11/10/DSC_6267.JPG
+.. image::  ../Picture/2018/11/10/DSC_6268.JPG
+.. image::  ../Picture/2018/11/10/DSC_6269.JPG
+.. image::  ../Picture/2018/11/10/DSC_6273.JPG
+.. image::  ../Picture/2018/11/10/DSC_6274.JPG
+.. image::  ../Picture/2018/11/10/DSC_6275.JPG
 
 2017年
 ---------------
@@ -219,22 +259,10 @@ togetterまとめ
 .. image::  ../Picture/2009/08/01/003.JPG
 .. image::  ../Picture/2009/08/01/004.JPG
 .. image::  ../Picture/2009/08/01/005.JPG
-.. image::  ../Picture/2009/08/01/006.JPG
-.. image::  ../Picture/2009/08/01/007.JPG
-.. image::  ../Picture/2009/08/01/008.JPG
-.. image::  ../Picture/2009/08/01/010.JPG
-.. image::  ../Picture/2009/08/01/011.JPG
-.. image::  ../Picture/2009/08/01/012.JPG
-.. image::  ../Picture/2009/08/01/013.JPG
-.. image::  ../Picture/2009/08/01/014.JPG
-.. image::  ../Picture/2009/08/01/016.JPG
-
 
 2008年
 ---------------
 
-.. image::  ../Picture/2008/04/12/2008-574.JPG
-.. image::  ../Picture/2008/04/12/2008-575.JPG
 .. image::  ../Picture/2008/04/12/2008-576.JPG
 .. image::  ../Picture/2008/04/12/2008-578.JPG
 .. image::  ../Picture/2008/04/12/2008-579.JPG
@@ -244,7 +272,6 @@ togetterまとめ
 .. image::  ../Picture/2008/04/12/2008-584.JPG
 .. image::  ../Picture/2008/04/12/2008-585.JPG
 .. image::  ../Picture/2008/04/12/2008-586.JPG
-.. image::  ../Picture/2008/04/12/2008-587.JPG
 
 2007年
 ---------------

@@ -1,5 +1,5 @@
 .. 
- Copyright (c) 2014-5 Jun Ebihara All rights reserved.
+ Copyright (c) 2014-9 Jun Ebihara All rights reserved.
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
  are met:
@@ -51,7 +51,10 @@ Maps:
  2012, Ehime    ,  3/24 ,   220 ,    34
  2013, Tokushima,  3/9  ,   300 ,    24
  2014, OSuC Kagawa, 4/12,    50 ,    11
- 2015, Tokushima,  11/14,      ,    24
+ 2015, Tokushima, 11/14 , 200, 24
+ 2016, OSuCehime,10/8, ,
+ 2018, Kagawa, 10/6,110,14
+ 2019, Tokushima,10/19,,24
 
 togetterまとめ
 ~~~~~~~~~~~~~~~
@@ -62,6 +65,8 @@ togetterまとめ
  OSC2012愛媛 NetBSDブース展示の記録,http://togetter.com/li/275497
  OSC2013徳島 NetBSDブース展示の記録,http://togetter.com/li/468577
  オープンソースアンカンファレンス2014香川　NetBSDブース展示の記録,http://togetter.com/li/654135
+ OSC2015徳島 NetBSDブース展示の記録,https://togetter.com/li/899923
+ OSC2018香川 NetBSDブース展示の記録,https://togetter.com/li/1273756
 
 四国での発表
 ~~~~~~~~~~~~
@@ -93,6 +98,8 @@ OS(un)Cにおける 締切駆動開発展示のススメ  tsutsuii@ さん
  2001,macppc mac68K amiga hpcmips dreamcast playstation2 i386 トロハブ
  2011,hp300 hpcmips hpcsh hpcarm
  2014, hp300 RPI zaurus hpcarm
+ 2015, PANIX RPI zaurus hpcarm
+ 2018, LUNA+PSG XM6i omxplayer EeePC
 
 よく行く店 徳島
 ~~~~~~~~~~~~~~~~~~~~~
@@ -100,18 +107,34 @@ OS(un)Cにおける 締切駆動開発展示のススメ  tsutsuii@ さん
 .. csv-table::
  :widths: 25 15 60
 
- Awa新町川ブリュワリー,東船場,徳島地ビール
- RISE & WIN Brewing,上勝町,マイクロブルワリー。21:00まで 
+ RISE & WIN Brewing,上勝町,マイクロブルワリー。水~金11:00-17:00　土日祝10:00-18:00 
  北島町立図書館,北島町,創世ホール通信 先鋭疾風的図書館 特撮関係資料
+ 2nd Story ale works,八多町,ブルワリー見学の場合は予約する
+ 徳島ステーションブリュワリー,徳島駅地下,11:00-23:00
+ Awa新町川ブリュワリー,東船場,徳島地ビール 12:00-14:00 17:00-24:00 土日は通し営業
  クリッパー模型,佐古四番町,ラジコンボートクリッパー
- エレパーツコーワ,北島町,電子部品
- でんでんハウス佐藤電気,住吉,電子部品
+ でんでんハウス佐藤電気,住吉,電子部品 徳島エジソン工房とは何か
  荒物屋ソラリス,佐古六番町,日用品 雑貨 古本有□
+ Jaxon'sレコード,幸町,中古レコード
+ AVスポットフジ,三軒屋町,10:00-19:30
  スウィング,秋田町,ジャズライブ
  スタンダード,阿波富田,ギネスが飲めるバー
  ネギ屋,吉野本町,ボカロ専門店
  エレパーツコーワ,北島町,電子部品　10:00-18:00
- 
+ シンフォマージ,佐古一番町,オーディオ/カーオーディオ13:00-20:00
+ サイトームセン,南二軒屋町,9:00-18:00 日曜休み
+ 来来,八百屋町,中華そば 11:00-14:30 18:00-1:30 日曜休
+ フクタレコード,東新町,徳島のプロレスの父
+ 音楽喫茶みき,川内町,つたの絡まる喫茶店
+ 14g,東新町,東新町１－１４　２F
+ 万年山文庫,南佐古,休業中
+ ろうそく夜,阿波大谷,東林院境内
+ Cafe polestar,上勝町,
+ お松大権現,阿南,ねこがモチーフ。勝負の神様。
+ 鳴戸市ドイツ館,鳴戸市,印刷史
+ 徳島市立文化センター,廃館,OSC2013徳島の日に笑点が収録。林家木久扇が座布団10枚。
+ 徳島びっくり日曜市,問屋町,キャベツ焼きとは何か。ハードオフ沖浜店近く。
+ 徳島古本流通センター,徳島大学近く,詳細不明
 
 よく行く店 香川
 ~~~~~~~~~~~~~~
@@ -119,11 +142,15 @@ OS(un)Cにおける 締切駆動開発展示のススメ  tsutsuii@ さん
 .. csv-table::
  :widths: 25 15 60
 
+ 麺之介,瓦町,KAOS (KAgawa Open Source)から十余年。
  iL,常磐町,ノイズ喫茶
+ Maison De Biere,百間町,毎月第3土曜にClub Biere
+ Hopheads,大工町,17:00-3:00
+ タビ式,瓦町,アブサン 階段 18:57-04:07
+ melobar,古新町,2018/10/20 DJ Lord Sassafras
  beer pub station,高松築港,駅構内にある。クラックが出してる
  オーディオサミット,高松町,オーディオ屋。古高松下車
  イサムノグチ庭園美術館,牟礼町,はがきで予約
- 麺之介,瓦町,KAOS (KAgawa Open Source)から十余年。
  麦蔵,福岡町,かしわざる
  山鹿,片原町,うどんの館とは何か。
  犬島精錬所美術館,犬島,わたしゃ５５年前からこうしてるんだよ
@@ -131,6 +158,7 @@ OS(un)Cにおける 締切駆動開発展示のススメ  tsutsuii@ さん
  Craftman's Factory,三条,コーヒー/パン 10:00-19:30
  珈琲倶楽部欅,片原町,コーヒー　10:00-19:00
  ノーマcafe,瓦町,コーヒー 19:00-24:00
+ ヴェランダ,詫間,三豊市仁尾町家の浦６３３−１
 
 よく行く店 愛媛
 ~~~~~~~~~~~~~~~~
@@ -147,6 +175,7 @@ OS(un)Cにおける 締切駆動開発展示のススメ  tsutsuii@ さん
  more music,大手町,中古レコード/CD
  イタリア軒,二番町,西洋料理
  独奏,二番町,街の雑踏に潜むバー。 
+ 宇和米博物館,宇和町,毎日新聞活版機械？第２校舎
 
 よく行く店 高知
 ~~~~~~~~~~~~~~~~~
@@ -158,6 +187,47 @@ OS(un)Cにおける 締切駆動開発展示のススメ  tsutsuii@ さん
  Rockカフェぽおる,はりまや町,ロックバー。近くに移転したらしい
  森山製パン所,宝永町,味付けサンド ピーナツ味
  横山隆一記念まんが館,はりまや橋,安倍夜朗展
+
+2018年 香川
+~~~~~~~~~~~~~
+
+.. image::  ../Picture/2018/10/06/DSC00264.JPG
+.. image::  ../Picture/2018/10/06/DSC00267.JPG
+.. image::  ../Picture/2018/10/06/DSC_6020.JPG
+.. image::  ../Picture/2018/10/06/DSC_6021.JPG
+.. image::  ../Picture/2018/10/06/DSC_6022.JPG
+.. image::  ../Picture/2018/10/06/DSC_6024.JPG
+.. image::  ../Picture/2018/10/06/DSC_6025.JPG
+.. image::  ../Picture/2018/10/06/DSC_6026.JPG
+.. image::  ../Picture/2018/10/06/DSC_6028.JPG
+.. image::  ../Picture/2018/10/06/DSC_6030.JPG
+.. image::  ../Picture/2018/10/06/DSC_6032.JPG
+.. image::  ../Picture/2018/10/06/DSC_6034.JPG
+
+2015年 徳島
+~~~~~~~~~~~~~
+
+.. image::  ../Picture/2015/11/14/1447468390188.jpg
+.. image::  ../Picture/2015/11/14/1447468624560.jpg
+.. image::  ../Picture/2015/11/14/1447468961409.jpg
+.. image::  ../Picture/2015/11/14/1447471126328.jpg
+.. image::  ../Picture/2015/11/14/1447473159037.jpg
+.. image::  ../Picture/2015/11/14/1447473296615.jpg
+.. image::  ../Picture/2015/11/14/1447473515286.jpg
+.. image::  ../Picture/2015/11/14/1447473555123.jpg
+.. image::  ../Picture/2015/11/14/1447478546728.jpg
+.. image::  ../Picture/2015/11/14/DSC08311.JPG
+.. image::  ../Picture/2015/11/14/DSC08312.JPG
+.. image::  ../Picture/2015/11/14/DSC08314.JPG
+.. image::  ../Picture/2015/11/14/DSC08315.JPG
+.. image::  ../Picture/2015/11/14/DSC08316.JPG
+.. image::  ../Picture/2015/11/14/DSC08317.JPG
+.. image::  ../Picture/2015/11/14/DSC08318.JPG
+.. image::  ../Picture/2015/11/14/DSC_1492.jpg
+.. image::  ../Picture/2015/11/14/DSC_1493.jpg
+.. image::  ../Picture/2015/11/14/KIMG0030.jpg
+.. image::  ../Picture/2015/11/14/KIMG0031.jpg
+.. image::  ../Picture/2015/11/14/KIMG0032.jpg
 
 オープンソースアンカンファレンス2014香川
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

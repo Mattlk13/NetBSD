@@ -1,30 +1,86 @@
-VERSION: :1,$s/2019-07-13/2019-07-13/g
-ISO:     :1,$s/201907060350Z/201907060350Z/g
-NetBSD:  :1,$s/8.99.50/8.99.50/g
-PKGSRC:  :1,$s/2019-07-13/2019-07-13/
+VERSION: :1,$s/2021-06-18/2021-06-18/g
+ISO:     :1,$s/202106170850Z/202106170850Z/g
+NetBSD:  :1,$s/9.99.85/9.99.85/g
+PKGSRC:  :1,$s/2021-06-18/2021-1/
 # Check MD5 filename before post this mail.
 # why dont we take off alone.
 
 To: port-armNetBSD.org@localhost
-Subject: 2019-07-13-netbsd-raspi-earmv6hf.img (Re: Raspberry Pi update please.)
+Subject: 2021-06-18-netbsd-raspi-earmv6hf.img (Re: Raspberry Pi update please.)
 From: Jun Ebihara <jun@soum.co.jp>
 
-I've updated 2019-07-13-netbsd-raspi-earmv6hf.img.gz for RPI.
+I've updated 2021-06-18-netbsd-raspi-earmv6hf.img.gz for RPI.
 
-http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/2019-07-13-earmv6hf/2019-07-13-netbsd-raspi-earmv6hf.img.gz
-http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/2019-07-13-earmv6hf/MD5
+http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/2021-06-18-earmv6hf/2021-06-18-netbsd-raspi-earmv6hf.img.gz
+http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/2021-06-18-earmv6hf/MD5
 
 Update:
-- NetBSD-current 8.99.50 evbarm-earmv6hf 201907060350Z rpi.img from nyftp.
-- dhcpcd-7.2.3 libc-12.213 openssl-1.1.1c
-- git-base-2.22.0nb1 mlterm-3.8.8nb1 ruby24-mikutter-3.9.0
-- RPI4: not supported
-  https://github.com/ebijun/NetBSD/blob/master/RPI/RPIimage/Image/README.RPI4
+- NetBSD 9.99.85 evbarm-earmv6hf 202106170850Z rpi.img from nyftp.
 
-- pre-installed packages:
+- Raspberry Pi [0-3] have been supported in big-endian mode (Rin Okuyama)
+XXX: should test big-endian image and pkgsrc
+
+http://mail-index.netbsd.org/port-arm/2021/06/17/msg007310.html
+ "earmv7hfeb works fine so far, pkgsrc included. aarc64eb doesn't boot
+  on a Raspberry Pi 3," 
+
+PR
+#55505 RaspberryPi3A+ can't find Wi-Fi module
+ http://gnats.netbsd.org/cgi-bin/query-pr-single.pl?number=55505
+
+- RPI4: testing on NetBSD/aarch64
+  https://github.com/ebijun/NetBSD/blob/master/RPI/RPIimage/Image/aarch64/README
+
+Changes from 2021-05-26 version
+https://github.com/ebijun/NetBSD/commit/2184445d9edad47d1ffd4151dfb0950e8334023e
+
+sysinfo:
+ NetBSD-9.99.85 sh-20181212-20210617062056Z userland-NetBSD-9.99.85/evbarm
+
+pkgsrc:
+ bash-5.1.8nb2 cairo-1.16.0nb4 curl-7.77.0 dillo-3.0.5nb10
+ fossil-2.15.2 gd-2.3.2nb1 git-base-2.32.0 gnutls-3.7.2
+ gtk2+-2.24.33nb2 gtk3+-3.24.29nb1 libffi-3.3nb5 libidn-1.37nb1
+ libimagequant-2.15.1 libxslt-1.1.34nb6 lintpkgsrc-4.96nb1
+ nettle-3.7.3 p11-kit-0.24.0 p5-Authen-SASL-2.16nb9
+ p5-Digest-HMAC-1.04nb11 p5-Email-Valid-1.202nb5
+ p5-Error-0.17029nb2 p5-GSSAPI-0.28nb12 p5-IO-CaptureOutput-1.1105nb2
+ p5-IO-Socket-INET6-2.72nb7 p5-IO-Socket-SSL-2.070nb1
+ p5-MailTools-2.21nb2 p5-Mozilla-CA-20200520nb1
+ p5-Net-DNS-1.30nb1 p5-Net-Domain-TLD-1.75nb5 p5-Net-IP-1.26nb9
+ p5-Net-LibIDN-0.12nb13 p5-Net-SMTP-SSL-1.04nb5 p5-Net-SSLeay-1.90nb1
+ p5-Socket6-0.29nb3 p5-TimeDate-2.33nb1 pcre2-10.37
+ perl-5.34.0nb2 qt5-qtbase-5.15.2nb5 ruby26-gettext-3.3.8
+ ruby26-oauth-0.5.6 ruby26-red-colors-0.2.0 ruby26-red-datasets-0.1.2
+ ruby26-zip-2.3.0 sudo-1.9.7p1 tcsh-6.22.02nb2 wget-1.21.1nb2
+
+Need Checking:
+- bluetooth keyboard/mouse setting
+- RPI camera module
+
+Got Reports:
+- HDMI output works very well however I wanted to change the resolution
+  into 800x600 both tty console and X Window graphical modes. Where should I
+  change it? As config.txt with hdmi_group=1, hdmi_mode=1 or hdmi_safe=1
+  didn't work.
+- USB input devices seem to work fine as well with my USB keyboard, mouse
+  and barcode reader. However for my USB output device such as my Xprinter
+  printer didn't work with device driver of ulpt(4). It is detected
+  and working in OpenBSD.[9.0 release also occurs same error]
+
+  [   195.114857] ulpt0 at uhub1 port 5 configuration 1 interface 0
+  [   195.114857] ulpt0: Xprinter (0x0483) USB Printer P (0x5743), rev 2.00/1.00, addr 5, iclass 7/1
+  [   195.114857] ulpt0: using bi-directional mode
+
+  rpi# cat myfile.txt > /dev/ulpt0
+  -sh: cannot create /dev/ulpt0: error 16
+- with my Raspberry Pi 3B because every time I invoked this command 
+ "shutdown -h now" a kernel panic occurs relating to usbd_transfer.
+- After shutting-down leaving the system unplugged, this will
+  turn it's processor very very hot and seems harmful to the system.
+
+pre-installed packages:
  https://github.com/ebijun/NetBSD/blob/master/RPI/RPIimage/pkgsrc/pkginfo
-- sysinfo and pkgsrc update 
- https://github.com/ebijun/NetBSD/commit/92304e0114b4b6deb3a8a4b1f35a6160e4c54fa7
 
 Keyboard layout checkpoint:
  http://www.netbsd.org/docs/guide/en/chap-cons.html
@@ -38,36 +94,15 @@ System Update:
 
 http://cvsweb.netbsd.org/bsdweb.cgi/src/distrib/sets/lists/base/shl.mi
 
-sysinfo:
- dhcpcd-7.2.3 libc-12.213 libcurses-8.2 NetBSD-8.99.50 openssl-1.1.1c
- sh-20181212-20190706004502Z unbound-1.9.1
- userland-NetBSD-8.99.50/evbarm
-
-pkgsrc:
- curl-7.65.1nb1 dbus-1.12.16 git-base-2.22.0nb1 glib2-2.60.4nb5
- gobject-introspection-1.60.1nb1 harfbuzz-2.5.3 libepoxy-1.4.3nb2
- libimagequant-2.12.3 libotf-0.9.16nb2 mlterm-3.8.8nb1
- pango-1.42.4nb4 ruby24-addressable-2.6.0 ruby24-delayer-1.0.0
- ruby24-delayer-deferred-2.1.1 ruby24-diva-1.0.0
- ruby24-mikutter-3.9.0 ruby24-nokogiri-1.10.3 ruby24-pluggaloid-1.2.0
- ruby24-twitter-text-3.0.0 uim-1.8.6nb61 wget-1.20.3nb1
-
-- mikutter support : 
+mikutter support : 
  I make sample API key,pre-installed.
  https://github.com/ebijun/NetBSD/tree/master/RPI/RPIimage/root/.mikutter/plugin
  https://github.com/Akkiesoft/how-to-make-mikutter-work-again
   cd /root/.mikutter
   git submodule add https://github.com/toshia/twitter_api_keys.git twitter_api_keys
-  git submodule add https://github.com/cobodo/mikutter-worldon mikutter-worldon 
 
-NetBSD Problem Report Summary:
-
-port-arm/53284: Support RPI3B+,RPI0W,RPI2-1.2
-  http://gnats.netbsd.org/cgi-bin/query-pr-single.pl?number=53284
- Open
-- RPI3B+ and RPI2-1.2: fixed,thanx
-- RPI0W: can't initialize microSD.
-  cp /boot/bcm2835-rpi-zero.dtb  /boot/bcm2835-rpi-zero-w.dtb 
+RPI Wifi:
+ http://mail-index.netbsd.org/port-arm/2019/08/31/msg006102.html
 
 Overview:
   http://wiki.NetBSD.org/ports/evbarm/raspberry_pi/
@@ -75,7 +110,7 @@ Overview:
 QEMU,with GENERIC kernel : vexpress to GENERIC: testing
  https://github.com/ebijun/NetBSD/tree/master/vexpress/Boot
  https://github.com/ebijun/NetBSD/tree/master/vexpress/vexpress-v2p-ca15-tc1.dtb
- http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/2019-07-13-earmv6hf/QEMU/netbsd-GENERIC.ub.gz
+ http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/2021-06-18-earmv6hf/QEMU/netbsd-GENERIC.ub.gz
  http://mail-index.netbsd.org/port-arm/2017/06/02/msg004154.html
 
 dmesg:
@@ -94,9 +129,6 @@ Problem:
 - webkit24-gtk-2.4.11nb9 compile failed.
 - dillo-3.0.5nb2 works with -O0
   thanx Jared McNeill.
-- Xfce4 4.13: 
-  # hang with xfce4-sessions,4.12 works fine.
-  XXX: Check Xfce4 and mint 
 
 security.pax.mprotect.enabled
   http://netbsd.org/gallery/presentations/msaitoh/2016_BSDCan/BSDCan2016-NetBSD.pdf
@@ -134,15 +166,12 @@ Pre-compiled packages:
 
 See /etc/pkg_install.conf
 
-PKG_PATH=http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/earmv6hf/2019-07-13/
+PKG_PATH=http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/earmv6hf/2021-1/
 
-- If you use Official Package for NetBSD7.0:
+- If you use Official Package for NetBSD9:
 
 set /etc/pkg_install.conf: 
-PKG_PATH=http://cdn.netbsd.org/pub/pkgsrc/packages/NetBSD/earmv6hf/7.0_HEAD/
-
-- I keep libfreetype.so.17.4.11 for some 7.0 related binaries.
-http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/2019-07-13-earmv6hf/libfreetype.so.17.4.11
+PKG_PATH=http://cdn.netbsd.org/pub/pkgsrc/packages/NetBSD/earmv6hf/9.0/
 
 - If you update pkgsrc by yourself,comment out /etc/pkg_install.conf and check
  /etc/mk.conf.
@@ -243,6 +272,9 @@ Testing::
 - (shotwell)
   # pkg_add shotwell
 
+USB mass storage boot
+ https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/msd.md
+
 CrossCompiling:
   http://www.slideshare.net/junebihara18/netbsdworkshop
 
@@ -258,17 +290,6 @@ I2C - "Raspberry Pi I2C implementation still broken?"
    http://gnats.netbsd.org/cgi-bin/query-pr-single.pl?number=48855
    http://gnats.netbsd.org/cgi-bin/query-pr-single.pl?number=48932
 
-musica - DLNA/UPnP music server: (Thanx @cvsync)
- MAEKAWA Masahide make a DLNA/UPnP music server called "musica".
- 
-  1. Check http://www.m-systems.co.jp/musica/index_en.html .
-  2. Download musica-0.3.22-netbsd6-evbarm-earmv6hf.tgz for evaluation.
-  3. pkg_add musica-0.3.22-netbsd6-evbarm-earmv6hf.tgz
-  4. musica -d [AAC,MP3,WMA,FLAC,DSDIFF,DSF,AIFF,WAV,Apple Lossless dir]
-  5. Find from DLNA/UPnP AV equipment.
-  6. With a little luck,you'll find musica and enjoy music via musica.
-  7. If you feel slow,Try {NetBSD/amd64 i386,OSX,Ubuntu} Version or improve NetBSD.
-
 XM6i - SHARP X68030 Emulator for NetBSD/x68k (Thanx isaki@)
   http://www.pastel-flower.jp/~isaki/XM6i/
   XM6i-0.55-netbsd7.0-earmv6hf-2015Q2.tar.gz
@@ -278,20 +299,12 @@ XM6i - SHARP X68030 Emulator for NetBSD/x68k (Thanx isaki@)
   https://twitter.com/isaki68k/status/625138538271502337
 
 Todo:
-- RPI UEFI
-- isaki@ audio2
-- make python35 binary
-- Rust
-  https://github.com/rust-lang/rust/compare/master...jakllsch:netbsd-20171225
 - set2pkg: update via pkgsrc.
 - pkg_in/pkg_summary
 - Summarize /usr/tests atf result on earm/earmhf/earmv6hf.
-- https://github.com/isaki68k/sayaka: PHP/vala based twitter client.
-  https://twitter.com/tsutsuii/status/700963911630065664
 - DTRACE http://wiki.netbsd.org/tutorials/how_to_enable_and_run_dtrace/
 - yaft (yet another framebuffer terminal):
   https://github.com/uobikiemukot/yaft
-- RPI.rst in english.
 - /dev/mem: http://mail-index.netbsd.org/port-arm/2015/03/12/msg002934.html
   "can't open /dev/mem" -> re-compile kernel with INSECURE.
 - Sound output to the jack: port-arm/2015/03/12/msg002938.html
@@ -313,7 +326,6 @@ pkgsrc Todo:
    https://github.com/golang/go/commit/276a52de55fb48c4e56a778f1f7cac9292d8fad7
 - gnuradio: g77 failed. need RTL2832U master.
   http://mail-index.netbsd.org/port-arm/2017/01/26/msg004090.html
-- kodi: boot failed on my environment.
 - www/otter-browser: compiling.
 - omxplayer: sometimes core dumps.
   -> add "gpu=256" to /boot/cmdline.txt, advice from Brandon Wickelhaus.
@@ -321,22 +333,22 @@ pkgsrc Todo:
 
 =====================
 
-For Open Source Conference 2019 Nagoya NetBSD booth.
+For Open Source Conference Online/Hokkaido 2021, NetBSD BOF.
 I've updated raspberry-pi image.
 
- Jul.13 2019 Sat:
- https://www.ospn.jp/osc2019-nagoya/
+2021 Jun.26 Sat 15:00-15:45 JST (UTC+9) ROOM G
+https://event.ospn.jp/osc2021-online-do/session/342890
 
- Nagoya *BSD Users' Group Meeting Jul.13. 16:15-17:00 JST
- https://www.ospn.jp/osc2019-do/modules/eguide/event.php?eid=7
+Join meeting with ZOOM/YoutubeLive 
+ https://ospn.connpass.com/event/211390/
+YoutubeLive https://www.youtube.com/c/OSPNjp
 
-http://www.re.soum.co.jp/~jun/OSC2019nagoya.pdf
+http://www.re.soum.co.jp/~jun/OSC2021do.pdf
 http://www.jp.NetBSD.org/
-http://nagoya.bug.gr.jp/
 https://www.facebook.com/NetBSD.jp 
-https://github.com/ebijun/NetBSD/blob/master/Guide/RPI/RPIupdate2019.rst
+https://github.com/ebijun/NetBSD/blob/master/Guide/RPI/RPIupdate2021.rst
 
-- NetBSD 8.99.50 earmv6hf rpi.img.gz base
+- NetBSD 9.99.85 earmv6hf rpi.img.gz base
 - Connect HDMI,USB Keyboard,USB Mouse,Ether(dhcpd and ntpd will work)
 - login root (no passwd)
 - startx ,and icewm running.
@@ -374,7 +386,7 @@ Features:
   - Recent current RPI kernel
   - USB/video support: as NetBSD-current 
   - pre-build packages
-    http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/earmv6hf/2019-07-13/
+    http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/earmv6hf/2020-08-28/
 
 Installed Packages:
   bash
@@ -395,6 +407,7 @@ Installed Packages:
   mozilla-rootcerts
   dillo
   medit
+  lrzsz
 
 To control HDMI output,add/delete "console=fb" on cmdline.txt.
 If delete console=fb definition,you can get serial console instead.
@@ -427,11 +440,11 @@ One more time: (we're gonna celebrate
 - Everything you always wanted to know about six but were afraid to ask.
 
  1. login root
- 2. mlterm-fb 
+ 2. mlterm-wscons 
  3. ftp http://mlterm.sf.net/vimperator.six
  4. cat vimperator.six
  5. exit 
- 6. mlterm-fb --rotate=left
+ 6. mlterm-wscons --rotate=left
  7. cat vimperator.six
     and @Chris_J_Baird only knows how to get to 1987.
  8. ftp http://kildall.apana.org.au/~cjb/mandel5.c

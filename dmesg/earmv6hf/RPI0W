@@ -1,14 +1,15 @@
 Copyright (c) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005,
-2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
-2018, 2019 The NetBSD Foundation, Inc.  All rights reserved.
+    2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
+    2018, 2019, 2020, 2021 The NetBSD Foundation, Inc.  All rights reserved.
 Copyright (c) 1982, 1986, 1989, 1991, 1993
-The Regents of the University of California.  All rights reserved.
+    The Regents of the University of California.  All rights reserved.
 
-NetBSD 8.99.50 (RPI) #0: Sat Jul  6 00:45:02 UTC 2019
+NetBSD 9.99.85 (RPI) #0: Thu Jun 17 06:20:56 UTC 2021
 	mkrepro@mkrepro.NetBSD.org:/usr/src/sys/arch/evbarm/compile/RPI
 total memory = 448 MB
-avail memory = 434 MB
+avail memory = 429 MB
 timecounter: Timecounters tick every 10.000 msec
+Kernelized RAIDframe activated
 armfdt0 (root)
 simplebus0 at armfdt0: Raspberry Pi Zero W Rev 1.1
 simplebus1 at simplebus0
@@ -30,33 +31,42 @@ bcmtmr0: interrupting on icu irq 3
 bcmaux0 at simplebus1
 /soc/thermal@7e212000 at simplebus1 not configured
 /soc/dsi@7e209000 at simplebus1 not configured
-bcmgpio0 at simplebus1: GPIO controller
+bcmgpio0 at simplebus1: GPIO controller 2835
 bcmgpio0: pins 0..31 interrupting on icu irq 49
 bcmgpio0: pins 32..54 interrupting on icu irq 50
 gpio0 at bcmgpio0: 54 pins
-bcmdmac0 at simplebus1: DMA0 DMA2 DMA4 DMA5 DMA8 DMA9 DMA10
+bcmdmac0 at simplebus1: DMA0 DMA2 DMA4 DMA5 DMA8 DMA9 DMA10 DMA11
 /soc/power at simplebus1 not configured
-bsciic0 at simplebus1: Broadcom Serial Controller
-iic0 at bsciic0: I2C bus
+/wifi-pwrseq at simplebus0 not configured
 /phy at simplebus0 not configured
+bsciic0 at simplebus1: Broadcom Serial Controller
+bsciic0: interrupting on icu irq 53
+iic0 at bsciic0: I2C bus
 bcmpmwdog0 at simplebus1: Power management, Reset and Watchdog controller
 bcmmbox0 at simplebus1: VC mailbox
 bcmmbox0: interrupting on icu irq 65
 vcmbox0 at bcmmbox0
+/soc/txp@7e004000 at simplebus1 not configured
 plcom0 at simplebus1: ARM PL011 UART
 plcom0: txfifo disabled
-plcom0: console
 plcom0: interrupting on icu irq 57
+bcmsdhost0 at simplebus1: SD HOST controller
+bcmsdhost0: interrupting on icu irq 56
 bsciic1 at simplebus1: Broadcom Serial Controller
+bsciic1: interrupting on icu irq 53
 iic1 at bsciic1: I2C bus
+com0 at simplebus1: BCM AUX UART, 1-byte FIFO
+com0: console
+com0: interrupting on icu irq 29
 sdhc0 at simplebus1: SDHC controller
 sdhc0: interrupting on icu irq 62
 bsciic2 at simplebus1: Broadcom Serial Controller
+bsciic2: interrupting on icu irq 53
 iic2 at bsciic2: I2C bus
 /soc/vec@7e806000 at simplebus1 not configured
-/soc/hdmi@7e902000 at simplebus1 not configured
 dwctwo0 at simplebus1: USB controller
 dwctwo0: interrupting on icu irq 9
+/soc/hdmi@7e902000 at simplebus1 not configured
 /soc/gpu at simplebus1 not configured
 genfb0 at simplebus1: switching to framebuffer console
 genfb0: framebuffer at 0x5dc5a000, size 1920x1280, depth 32, stride 10240
@@ -66,47 +76,72 @@ wsdisplay0: screen 1-3 added (default, vt100 emulation)
 vchiq0 at simplebus1: BCM2835 VCHIQ
 /arm-pmu at simplebus0 not configured
 gpioleds0 at simplebus0: ACT
-/soc/txp@7e004000 at simplebus1 not configured
 bcmrng0 at simplebus1: RNG
-timecounter: Timecounter "clockinterrupt" frequency 100 Hz quality 0
+entropy: ready
 timecounter: Timecounter "bcmtmr0" frequency 1000000 Hz quality 100
-sdhc0: SDHC 3.0, rev 153, platform DMA, 200000 kHz, HS 3.3V, re-tuning mode 1, 1024 byte blocks
-sdmmc0 at sdhc0 slot 0
+timecounter: Timecounter "clockinterrupt" frequency 100 Hz quality 0
+sdmmc0 at bcmsdhost0
+sdhc0: SDHC 3.0, rev 153, caps <01610000/00000000>, platform DMA, 200000 kHz, HS 3.3V, re-tuning mode 1, 1024 byte blocks
+sdmmc1 at sdhc0 slot 0
 dwctwo0: Core Release: 2.80a (snpsid=4f54280a)
 usb0 at dwctwo0: USB revision 2.0
-sdhc0: cmd timeout error
-uhub0 at usb0: NetBSD (0000) DWC2 root hub (0000), class 9/0, rev 2.00/1.00, addr 1
+uhub0 at usb0: NetBSD (0x0000) DWC2 root hub (0x0000), class 9/0, rev 2.00/1.00, addr 1
 uhub0: 1 port with 1 removable, self powered
 IPsec: Initialized Security Association Processing.
-sdmmc0: SD card status: 4-bit, C10, U1, V10
-ld0 at sdmmc0: <0x74:0x4a60:USDU1:0x20:0x4010773e:0x125>
-ld0: 61023 MB, 7779 cyl, 255 head, 63 sec, 512 bytes/sect x 124975104 sectors
+aes: BearSSL aes_ct
+chacha: Portable C ChaCha
+adiantum: self-test passed
+aes_ccm: self-test passed
+blake2s: self-test passed
+sdmmc0: direct I/O error 5, r=6 p=0xc9feef14 write
+sdmmc0: SD card status: 4-bit, C10, U3, V30
+ld0 at sdmmc0: <0x74:0x4a60:USDU1:0x20:0x0b8001e5:0x113>
+ld0: 29423 MB, 7472 cyl, 128 head, 63 sec, 512 bytes/sect x 60258304 sectors
 ld0: 4-bit width, High-Speed/SDR25, 50.000 MHz
+sdmmc1: 4-bit width, 50.000 MHz
+bwfm0 at sdmmc1 function 1
+(manufacturer 0x2d0, product 0xa9a6) at sdmmc1 function 2 not configured
 uhidev0 at uhub0 port 1 configuration 1 interface 0
-uhidev0: vendor 056e (0x56e) TK-FCP027 Series (0x1014), rev 1.10/1.03, addr 2, iclass 3/1
-ukbd0 at uhidev0: 8 Variable keys, 6 Array codes
+uhidev0: vendor 056e (0x056e) TK-FCP027 Series (0x1014), rev 1.10/1.03, addr 2, iclass 3/1
+ukbd0 at uhidev0
 wskbd0 at ukbd0: console keyboard, using wsdisplay0
 uhidev1 at uhub0 port 1 configuration 1 interface 1
-uhidev1: vendor 056e (0x56e) TK-FCP027 Series (0x1014), rev 1.10/1.03, addr 2, iclass 3/0
+uhidev1: vendor 056e (0x056e) TK-FCP027 Series (0x1014), rev 1.10/1.03, addr 2, iclass 3/0
 uhidev1: 2 report ids
 uhid0 at uhidev1 reportid 1: input=1, output=0, feature=0
 uhid1 at uhidev1 reportid 2: input=3, output=0, feature=0
 uhub0: autoconfiguration error: illegal enable change, port 1
+cgd: self-test aes-xts-256
+cgd: self-test aes-xts-512
+cgd: self-test aes-cbc-128
+cgd: self-test aes-cbc-256
+cgd: self-test 3des-cbc-192
+cgd: self-test blowfish-cbc-448
+cgd: self-test aes-cbc-128 (encblkno8)
+cgd: self-tests passed
 WARNING: 1 error while detecting hardware; check system log.
 boot device: ld0
 root on ld0a dumps on ld0b
 root file system type: ffs
-kern.module.path=/stand/evbarm/8.99.50/modules
+kern.module.path=/stand/evbarm/9.99.85/modules
 vchiq0: interrupting on icu irq 66
-vchiq: vchiq_init_state: slot_zero = 0xca0d0000, is_master = 0
+vchiq: vchiq_init_state: slot_zero = 0xca420000, is_master = 0
 vchiq: local ver 8 (min 3), remote ver 8.
 vcaudio0 at vchiq0: auds
+bwfm0: Firmware file default:    brcmfmac43430-sdio.bin
+bwfm0: Firmware file model-spec: brcmfmac43430-sdio.raspberrypi,model-zero-w.bin
 WARNING: no TOD clock present
 WARNING: using filesystem time
 WARNING: CHECK AND RESET THE DATE!
-audio0 at vcaudio0: playback, capture, half duplex, independent
-audio0: slinear_le:16 -> slinear_le:16 2ch 48000Hz, blk 40ms for playback
-audio0: slinear_le:16 2ch 48000Hz, blk 40ms for recording
+audio0 at vcaudio0: playback
+audio0: slinear_le:16 -> slinear_le:16 2ch 48000Hz, blk 7680 bytes (40ms) for playback
 spkr0 at audio0: PC Speaker (synthesized)
 wsbell at spkr0 not configured
+bwfm0: Found Firmware file: brcmfmac43430-sdio.bin
+bwfm0: NVRAM file default:    brcmfmac43430-sdio.txt
+bwfm0: NVRAM file model-spec: brcmfmac43430-sdio.raspberrypi,model-zero-w.txt
+bwfm0: Found NVRAM file: brcmfmac43430-sdio.raspberrypi,model-zero-w.txt
+bwfm0: CHIPACTIVE
+bwfm0: wl0: Oct 23 2017 03:55:53 version 7.45.98.38 (r674442 CY) FWID 01-e58d219f
+bwfm0: address b8:27:eb:3e:fd:a9
 wsdisplay0: screen 4 added (default, vt100 emulation)

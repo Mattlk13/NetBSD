@@ -11,11 +11,13 @@
 
 ARCH=earmv7hf
 
-PKG_PATH=http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/${ARCH}/2019-08-03/
+# version information
+BINARY=nycdn.netbsd.org/pub/NetBSD-daily/HEAD/202104240300Z/evbarm-earmv7hf/binary
 
-# iso file information
+PKG_PATH=http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/${ARCH}/2021-1/
 
-IMAGE=/usr/release/images/NetBSD-8.99.50-evbarm-${ARCH}-201907141730Z.iso
+
+KERNELDIR=`grep ^IMAGE= Makefile | awk -F- '{print "RPI."$$5}'|sed -e s/.iso//`
 
 PKGSRC=../../../../pkgsrc/pkgsrc-2016Q1.tar.gz 
 
@@ -26,9 +28,9 @@ FILE=`date +%Y-%m-%d`-netbsd-armv7-${ARCH}.img
 FILE_TMP=a.img
 
 # extract sets.
-SETS=${MNT_CDROM}/evbarm/binary/sets
-RPI=${MNT_CDROM}/evbarm/binary/gzimg/armv7.img
-KERNEL7=${MNT_CDROM}/evbarm/binary/kernel/netbsd-RPI2.gz
+SETS=${BINARY}/sets
+RPI=${BINARY}/gzimg/armv7.img
+KERNEL7=${BINARY}/kernel/netbsd-RPI2.gz
 
 #LIST=man misc modules tests text xbase xcomp xetc xfont xserver
 LIST=man modules xbase xcomp xetc xfont xserver 
@@ -51,7 +53,8 @@ VND_CDROM=vnd1
 MNT_TMP=/mnt2
 VND_TMP=vnd2
 
-all: file cdmount rpi extract cdunmount 
+#all: file rpi extract cdunmount kernel-update bwfm-firmware
+all: file rpi extract bwfm-firmware
 
 #update: cdmount update-extract cdunmount
 
@@ -64,8 +67,6 @@ extract:
 	for i in ${LIST} ; do (tar xzpf ${SETS}/$${i}.tgz -C ${MNT};); done
 #	echo extract pkgsrc.
 #	tar xzpf ${PKGSRC} -C ${MNT}/usr
-	mount_msdos /dev/${VND}e ${MNT}/boot
-	umount ${MNT}/boot
 	umount ${MNT}
 	vnconfig -u ${VND}
 
@@ -74,7 +75,7 @@ rpi:
 	# set disklabel
 	vnconfig ${VND} ${FILE}
 	fdisk -uf -0 -s 6/8192/188416 ${VND} #DOS id6 partition:DISKLABEL.proto
-	fdisk -uf -1 -s 169/458752/4456448 ${VND} 
+	fdisk -uf -1 -s 169/458752/4702208 ${VND} 
 	disklabel -DR ${VND} DISKLABEL.proto
 	# newfs dos and ffs
 	newfs -n 500000 -b 4096 /dev/r${VND}a
@@ -100,8 +101,8 @@ rpi:
 file: 
 	echo Create ${FILE}.
 #	dd if=/dev/zero of=${FILE} bs=512 count=3813376 progress=50000
-	dd if=/dev/zero of=${FILE} bs=512 count=4915200 progress=62000
-#	 2048*2400
+	dd if=/dev/zero of=${FILE} bs=512 count=5160960 progress=62000
+#	 2048*2520
 	sleep 3
 
 # stop sshd for package install
@@ -126,7 +127,7 @@ pkg-back:
 	vnconfig ${VND} ${FILE}
 	fsck /dev/r${VND}a
 	mount /dev/${VND}a ${MNT}
-	cp ../../etc/rc.conf ${MNT}/etc/rc.conf
+	cp etc/rc.conf ${MNT}/etc/rc.conf
 	umount ${MNT}
 	vnconfig -u ${VND}
 
@@ -140,6 +141,7 @@ release:
 # earmv7hf: config.txt should contain start address
 #	(cd ../../boot;cp * ${MNT}/boot)
 	echo "PKG_PATH=${PKG_PATH}" >> ${MNT}/etc/pkg_install.conf 
+	echo "${PKG_PATH}" >> ${MNT}/usr/pkg/etc/pkgin/repositories.conf
 	umount ${MNT}/boot
 	umount ${MNT}
 	vnconfig -u ${VND}
@@ -169,18 +171,6 @@ logclean:
 	umount ${MNT}
 	vnconfig -u ${VND}
 
-# mount cdrom image
-cdmount:
-	echo mount cdrom image.
-	vnconfig ${VND_CDROM} ${IMAGE}
-	mount_cd9660 /dev/${VND_CDROM}a ${MNT_CDROM}
-
-# unmount cdrom image
-cdunmount:
-	echo mount cdrom image.
-	umount ${MNT_CDROM}
-	vnconfig -u ${VND_CDROM}
-
 # copy newer firmware to /boot on MSDOS partition
 # https://github.com/raspberrypi/firmware
 firm:
@@ -193,10 +183,8 @@ firm:
 kernel-update:
 	vnconfig ${VND} ${FILE}
 	mount /dev/${VND}e ${MNT}
-#	mv  ${MNT}/kernel.img ${MNT}/kernel.img.original
-#	cp /usr/obj/kernel/earmv6hf/RPI/netbsd.bin ${MNT}/kernel.img
 	mv  ${MNT}/kernel7.img ${MNT}/kernel7.img.original
-	cp /usr/obj/kernel/earmv6hf/RPI2/netbsd.bin ${MNT}/kernel7.img
+	cp kernel/${KERNELDIR}/netbsd77.img ${MNT}/kernel7.img
 	umount ${MNT}
 	vnconfig -u ${VND} 
 
@@ -230,5 +218,15 @@ mikutter-key:
 	fsck -fy /dev/r${VND}a
 	mount /dev/${VND}a ${MNT}
 	patch -d ${MNT}/root/.mikutter/plugin/twitter_api_keys < ../mikutter/twitter_api_keys.rb.patch
+	umount ${MNT}
+	vnconfig -u ${VND}
+
+bwfm-firmware:
+	vnconfig ${VND} ${FILE}
+	fsck /dev/r${VND}a
+	mount /dev/${VND}a ${MNT}
+	mkdir -p ${MNT}/libdata/firmware/if_bwfm/
+	cp -p ../kernel/Firmware/brcmfmac43* ${MNT}/libdata/firmware/if_bwfm/
+	cp -p ../kernel/Firmware/LICENCE.broadcom_bcm43xx ${MNT}/libdata/firmware/if_bwfm/
 	umount ${MNT}
 	vnconfig -u ${VND}

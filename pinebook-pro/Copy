@@ -1,0 +1,6 @@
+#df
+#disklabel sd0
+FILE=/usr/release/images/NetBSD-evbarm-aarch64-202002061010Z-pinebook-pro.img.gz
+COMPRESS=-z
+
+echo progress ${COMPRESS} -f ${FILE} dd of=/dev/rsd0d bs=4m

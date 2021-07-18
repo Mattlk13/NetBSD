@@ -1,3 +1,7 @@
+#
+df
+vnconfig -l
+#
 make  
 make release
 make pkg

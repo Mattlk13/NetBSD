@@ -1,5 +1,5 @@
 .. 
- Copyright (c) 2013-6 Jun Ebihara All rights reserved.
+ Copyright (c) 2013-9 Jun Ebihara All rights reserved.
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
  are met:
@@ -212,8 +212,17 @@ LibreOfficeをインストールしてみましょう。
  # cd /usr/pkgsrc/misc/libreoffice
  # make package-install
      : 9時間くらいかかります。
- # which soffice
- /usr/pkg/bin/soffice
+ # which loffice
+ /usr/pkg/bin/loffice
+
+依存しているパッケージを調べる
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+ cd /usr/pkgsrc/pkgtools/revbump
+ make package-install
+ finddepends lang/rust  .... rustに依存しているパッケージを調べる
 
 インストールするソフトウェアのライセンスを意識する
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -338,6 +347,12 @@ pkg_rolling-replaceを使う方法:依存関係に従って更新する
 バグレポート・追加差分
 ~~~~~~~~~~~~~~~~~~~~~~~~
  http://www.NetBSD.org → Support →Report a bug / Query bug database.
+
+The Attic Museum
+~~~~~~~~~~~~~~~~~~~~~~~~~
+ https://wiki.netbsd.org/attic_museum
+
+メンテナンスするのがつらくなってきた機能を削除します。yurexとか。
 
 NetBSDとブース展示
 -------------------------

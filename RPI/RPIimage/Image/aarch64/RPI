@@ -1,17 +1,19 @@
 ## build img file
 #
-make -f Makefile 
-make -f Makefile release
-make -f Makefile pkg
+make 
+make release
+make pkg
 #
 #./Copy
 ## add packages.
 # 
 #./03_back
-#mv back.img `date +%Y-%m-%d`-netbsd-raspi-earmv6hf.img
-#make -f Makefile logclean
-#make -f Makefile pkg-back
-#make -f Makefile mikutter-key
+## check packages.
+#
+#mv back.img `date +%Y-%m-%d`-netbsd-raspi-aarch64.img
+#make logclean
+#make pkg-back
+#make mikutter-key
 #
 #./Copy
 ###test tweet

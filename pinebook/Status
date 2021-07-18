@@ -4,144 +4,203 @@ cat << EOF
 To: port-arm%netbsd.org@localhost
 Subject: pinebook status update (${DATE})
 
-Update:
- libc-12.213
- openssl-1.1.1c
- boost-1.70.0
- mlterm-3.8.8nb1
- rust-1.36
+Topics:
+- /usr/X11R7/lib/modules/drivers/modesetting_drv.so issue
 
-PR:
- port-arm/54342 
-  Pinebook screen glitches/offsets on top and extreme right of the 
-  screen with modeset enabled.
+X hungs with xfce4/mate desktop.icewm works.
+https://github.com/ebijun/NetBSD/blob/master/pinebook/Update/X/Xorg.0.log
 
-TEST kernel:
-- deforaos-camera: camera capture,and reboot
- apply: http://mail-index.netbsd.org/port-arm/2019/01/21/msg005392.html
- https://twitter.com/ebijun/status/1087694456936001536
- my compiled kernel with camera patch
- http://cdn.netbsd.org/pub/NetBSD/misc/jun/aarch64/pinebook/netbsd
- see instruction by Harold Gutch:
-  http://mail-index.netbsd.org/port-arm/2019/07/09/msg005889.html
+depends on /usr/X11R7/lib/modules/drivers/modesetting_drv.so 
+NetBSD-9.99.86-evbarm-aarch64-202107140840Z failed.
+NetBSD-9.99.85-evbarm-aarch64-202106200030Z works well.
+
+- pkgin support
+ make pkg_summary. and pkgin works.
+ cd /usr/pkgsrc/packages/All
+ find . -name '*.tgz' -exec pkg_info -X {} \; > pkg_summary
+ gzip -f pkg_summary
+
+ pkgsrc packages:
+ http://cdn.netbsd.org/pub/NetBSD/misc/jun/aarch64/aarch64/2021-1/
+
+- graphical mixer for NetBSD audio.
+
+on pinebook:
+ Select a mixer device:
+ [*] /dev/mixer0: sun50i-a64-audi  ausoc
+ [ ] /dev/mixer1: hdmi-audio  ausoc
+
+on pinebook pro:
+XXX: [inputs] tab controls audio output level.
+ https://twitter.com/ebijun/status/1395184397599469568
+
+- Audio CD with wavpack
+Encode: 
+ On Windows: Exact Audio Copy & foobar2000
+ On pkgsrc:
+ 1. pkg_add abcde; pkg_add glyr
+    abcde -d /dev/rcd0a -B -o wav -1 -a default,cue
+    -> wav,cue,jpg file created.
+ 2. pkg_add wavpack 
+    wavpack -h ${FILE}.wav --write-binary-tag "Cover Art (Front)=@${FILE}.jpg" -w "cuesheet=@${FILE}.cue"
+    -> wv file created.
+
+Play: 
+  qmmp: can play wavpack file with cue. How can I show Cover Art?
+   Setting->Output->OSS plugin(liboss.so)
+
+- touchpad: sometimes cursor far away.
+- audio0 input issue
+  http://mail-index.netbsd.org/port-arm/2021/02/22/msg007185.html
+  "Is audio input from the inbuilt microphone(s) working?  I get "read failed:
+  Resource temporarily unavailable" from audiorecord"
+  audio0(ausoc1): trigger_input failed: errno=5
+  audio0(audoc1): device timeout
+
+pkgsrc:
+- works : inkscape,scribus,seamonkey,minitube,mikutter,xournalpp,libreoffice
+
+- firefox 90.0 and libreoffce 7.1.4.2 on NetBSD 9.99.85/aarch64 on pinebook.
+
+ zoom meeting with firefox on NetBSD/aarch64 on pinebook pro 
+  with UserAgent switcher addon as Linux.
+ Send: Share Screen,camera/USB Camera
+ Problem: Can"t show others screen/in-camera.
+
+- nono: luna68k/luna88k emulator
+ add /etc/mk.conf
+  ACCEPTABLE_LICENSES= nono-license
+ cd /usr/pkgsrc/emulators/nono;make ;make package-install
+- search soumd mixer GUI to manage mixerctl
+ 
+ToDo:
+- 3D acceleration
+
+- Pinebook Pro 
+ mate/xfce4/camera/WiFi
+ ToDo:  
+ - HDMI output via USB-C 
+ - Audio output: can't switch speaker & headphone out
+
+- Pinebook
+ mate/xfce4/camera/HDMI
+ ToDo:
+ - internal WiFi
 
 System Updates:
 
-http://cvsweb.netbsd.org/bsdweb.cgi/src/distrib/sets/lists/base/shl.mi
 
 sysinfo:
- dhcpcd-7.2.3 libc-12.213 libcurses-8.2 NetBSD-8.99.50
- openssl-1.1.1c sh-20181212-20190705082918Z unbound-1.9.1
- userland-NetBSD-8.99.50/evbarm
+ NetBSD-9.99.86 sh-20181212-20210714083347Z
+ userland-NetBSD-9.99.86/evbarm
 
 pkgsrc:
- ImageMagick-7.0.8.49 SDL2-2.0.9nb4 ap24-php71-7.1.30nb2
- apache-2.4.39nb3 apache-ant-1.10.6 atkmm-2.24.3
- atril-1.22.1nb1 babl-0.1.66 boost-build-1.70.0
- boost-docs-1.70.0 boost-headers-1.70.0 boost-jam-1.70.0
- boost-libs-1.70.0 boost-mpi-1.70.0 brotli-1.0.7nb1
- caja-dropbox-1.22.1 caja-extensions-1.22.0nb2
- cbindgen-0.9.0 clang-8.0.0 cmake-3.14.5nb1
- curl-7.65.1nb1 dbus-1.12.16 dhcpcd-7.2.3
- dhcpcd-gtk-0.7.5nb8 dhcpcd-icons-0.7.5 enchant2-2.2.4
- exempi-2.5.0nb1 faad2-2.8.8 fd-3.01b
- ffmpeg3-3.4.6nb1 ffmpeg4-4.1.3nb1 firefox52-52.9.0nb16
- freetype2-2.10.0 gdbus-codegen-2.60.4
- gettext-lib-0.20.1 gettext-m4-0.20.1 gettext-tools-0.20.1
- git-base-2.22.0nb1 glew-2.1.0 glib-networking-2.60.3
- glib2-2.60.4nb5 glib2-tools-2.60.4 glibmm-2.60.0
- gnupg2-2.2.16 gobject-introspection-1.60.1nb1
- gpgme-1.13.1 gst-plugins1-base-1.16.0 gstreamer1-1.16.0
- gtk-doc-1.29nb3 harfbuzz-2.5.3 ibus-mozc-2.20.2673.102nb14
- inkscape-0.92.4nb1 json-glib-1.4.4 libabw-0.1.1nb14
- libbluray-1.1.2 libcares-1.15.0nb1 libcdr-0.1.5nb2
- libe-book-0.1.3nb8 libepoxy-1.4.3nb2 libepubgen-0.1.0nb4
- libetonyek-0.1.9nb1 libevent-2.1.8nb1 libfreehand-0.1.1nb22
- libimagequant-2.12.3 libixion-0.14.1nb1 libmspub-0.1.4nb8
- libmwaw-0.3.7nb9 libnice-0.1.16 libotf-0.9.16nb2
- libpagemaker-0.0.4nb4 libpaper-1.1.28 libpurple-2.13.0nb6
- libqxp-0.0.2nb2 librevenge-0.0.4nb9 librsvg-2.40.20nb4
- libstaroffice-0.0.2nb7 libusb-compat-0.1.7 libuv-1.30.1
- libvisio-0.1.6nb11 libwpd-0.10.1nb9 libwpg-0.3.1nb11
- libwps-0.4.3nb9 libxfce4ui-4.13.5 libxfce4util-4.13.3
- libzmf-0.0.2nb10 llvm-8.0.0 mate-1.22.0nb1 mate-applets-1.22.1
- mate-control-center-1.22.1 mate-desktop-1.22.1nb2
- mate-media-1.22.1nb1 mate-netbook-1.22.1 mate-power-manager-1.22.1
- mate-sensors-applet-1.22.1 mate-utils-1.22.1 mdds-1.4.3nb1
- mdds1.2-1.3.1nb4 mlterm-3.8.8nb1 mozc-renderer-2.20.2673.102nb14
- mozc-server-2.20.2673.102nb14 mozc-tool-2.20.2673.102nb14
- mozo-1.22.1 mpv-0.29.1nb8 mysql-client-5.7.26nb3
- nghttp2-1.39.1nb1 nodejs-10.16.0 nss-3.44.1 orcus-0.14.1nb1
- osabi-NetBSD-8.99.50 pango-1.42.4nb4 php-7.1.30 php71-curl-7.1.30nb2
- php71-fpm-7.1.30nb2 php71-gd-7.1.30 php71-iconv-7.1.30
- php71-intl-7.1.30nb2 php71-json-7.1.30 php71-mbstring-7.1.30
- php71-pdo-7.1.30 php71-pdo_sqlite-7.1.30nb2 php71-posix-7.1.30
- php71-zip-7.1.30 php71-zlib-7.1.30 pluma-1.22.1nb1
- postgresql95-client-9.5.18 protobuf-3.8.0 pulseaudio-12.2nb5
- py37-Socks-1.7.0 py37-babel-2.7.0 py37-cryptography-2.7
- py37-cython-0.29.11 py37-importlib-metadata-0.15
- py37-lxml-4.3.4 py37-pathlib2-2.3.4 py37-pbr-5.2.1
- py37-pluggy-0.12.0 py37-setuptools_scm-3.3.3 py37-test-4.6.3nb1
- py37-urllib3-1.25.3 py37-wcwidth-0.1.7 py37-zipp-0.5.1
- python36-3.6.9 ruby24-addressable-2.6.0 ruby24-delayer-1.0.0
- ruby24-delayer-deferred-2.1.1 ruby24-diva-1.0.0
- ruby24-mikutter-3.9.0 ruby24-nokogiri-1.10.3
- ruby24-pluggaloid-1.2.0 ruby24-twitter-text-3.0.0
- rust-1.36 seamonkey-2.49.4nb11 source-highlight-3.1.8nb9
- speexdsp-1.2.0 spidermonkey52-52.7.4nb9
- tk-8.6.9.1 unittest-cpp-2.0.0 waf-2.0.17 wget-1.20.3nb1
- xfce4-appfinder-4.13.3 xfce4-conf-4.13.7 xfce4-desktop-4.13.4
- xfce4-exo-0.12.6 xfce4-panel-4.13.5 xfce4-power-manager-1.6.2
- xfce4-session-4.13.2 xfce4-settings-4.13.6 xfce4-thunar-1.8.6
- xfce4-tumbler-0.2.4nb1 xfce4-wm-4.13.2 youtube-dl-20190702
+ ImageMagick-7.1.0.2 adwaita-icon-theme-40.1 akonadi-1.13.0nb39
+ alsa-lib-1.2.5.1 ap24-php74-7.4.21nb6 apr-util-1.6.1nb11
+ atkmm-2.28.2 bash-5.1.8nb2 cairomm-1.14.3 cdk-5.0.20210324
+ clang-12.0.1 cmake-3.20.5 consolekit-1.2.4 enchant2-2.3.0
+ exiv2-0.27.4 firefox-90.0 firefox-l10n-90.0 fmtlib-8.0.1
+ fossil-2.16 gdbm-1.20 gdbus-codegen-2.68.3 gettext-tools-0.21nb3
+ git-base-2.32.0nb1 glew-2.2.0nb2 glib2-2.68.3nb1 glib2-tools-2.68.3
+ glibmm-2.66.1 go-1.16.6 go-bin-1.14.2nb3 go115-1.15.14
+ go116-1.16.6 googletest-1.11.0 gsl-2.7 harfbuzz-2.8.1
+ harfbuzz-icu-2.8.1 inkscape-1.1 libduktape-2.6.0nb2
+ libreoffice-7.1.4.2 libsigc++-2.10.7 libuv-1.41.1
+ libzip-1.8.0 llvm-12.0.1 lua52-5.2.4nb1 m4-1.4.19
+ marco-1.24.2nb1 mkvtoolnix-58.0.0 nodejs-14.17.3
+ nspr-4.32 nss-3.67 openjdk8-1.8.292nb1 openjpeg-2.4.0nb1
+ osabi-NetBSD-9.99.85 p11-kit-0.24.0nb1
+ p5-IO-Socket-SSL-2.071 p5-Test-Needs-0.002009
+ p5-Tree-DAG_Node-1.32 pangomm-2.46.1 pcre-8.45
+ php-7.4.21 php74-curl-7.4.21nb10 php74-fpm-7.4.21nb6
+ php74-gd-7.4.21nb1 php74-iconv-7.4.21 php74-intl-7.4.21nb6
+ php74-json-7.4.21 php74-mbstring-7.4.21 php74-pdo-7.4.21
+ php74-pdo_sqlite-7.4.21nb6 php74-posix-7.4.21 php74-sqlite3-7.4.21nb6
+ php74-zip-7.4.21nb5 php74-zlib-7.4.21nb1 pkg_install-20210410
+ pkg_rolling-replace-0.24.13 polkit-0.119nb1 py38-cElementTree-3.8.11
+ py38-certifi-2021.5.30 py38-cffi-1.14.6 py38-expat-3.8.11
+ py38-setuptools-57.1.0 py38-sqlite3-3.8.11nb19
+ py38-urllib3-1.26.6 python37-3.7.11 python38-3.8.11
+ qt5-qtbase-5.15.2nb6 rclone-1.55.0nb3 ruby26-base-2.6.8
+ ruby26-red-colors-0.2.0 rust-1.52.1nb4 sqlite3-3.36.0
+ sudo-1.9.7p1 x11-links-1.34
 
-works well: 
- evince gedit mate medit py-sphinx gimp seamonkey inkscape
+System Updates:
+http://cvsweb.netbsd.org/bsdweb.cgi/src/distrib/sets/lists/base/shl.mi
+
+Tips:
+- System Clocks
+ % sysctl -a |grep freq
+
+ Install pkgsrc/sysutils/estd from pkgsrc and start it on bootup 
+ for automatic up-/downscaling.
+
+pinebook:
+ machdep.cpufreq.cpu0.available = 1152 1104 1008 816 648 408
+ # sysctl -w machdep.cpufreq.cpu0.target=1152
+
+pinebook-pro:
+ machdep.cpufreq.cpu0.available = 1416 1200 1008 816 600 408
+ machdep.cpufreq.cpu4.available = 2000 1800 1608 1416 1200 1008 816 600 408
+ # sysctl -w machdep.cpufreq.cpu0.target=1416
+ # sysctl -w machdep.cpufreq.cpu4.target=2000
+
+- Battery Status
+  envstat 
+  xbattbar
+XXX: link from dbus or mate-power-manager? 
+
+- HDMI port works on pinebook.
+ Connect display to pinebook HDMI port
+ # pkg_add arandr
+ % arandr
+
 - mate: pkgsrc/meta-pkgs/mate
  https://twitter.com/ebijun/status/1086814579647102976
  pkg_add mate
  echo "mate-session" >> .xinitrc
  startx
+
 - ibus 
  export XMODIFIERS=@im=ibus
-- firefox52: 
- https://twitter.com/ebijun/status/1086487791104450563
- PKG_OPTIONS.firefox = -pulseaudio -alsa -dbus gtk2 -gtk3
-    general.useragent.local=ja if you want it.
+
 - Add eDP transmitter and enable display pipeline
  http://mail-index.netbsd.org/source-changes/2019/02/03/msg103047.html
  arandr works well: display up-side down
  https://twitter.com/ebijun/status/1092885154127724544
+
 - keymapping: [Shift][<>] on 11inch
  https://wiki.netbsd.org/ports/evbarm/allwinner/#index3h2
+
 - replace AC Adapter for heavy load
  Anker PowerPort10 A2133+USB DC Cable with 3.5mm/1.35mm connecter
-- USB Wifi: works well,sometimes unseened with heavy load.
+ USB-C laptop charger from HP
+
+- USB Wifi: urtwn0/run0 works 
  urtwn0: I-O DATA DEVICE, INC. (0x4bb) WN-G150UM (0x94c)
+ pinebook: internal Wi-Fi not supported
+ pinebook pro: internal bwfm0 works,sometimes hangs
 
-
-ToDo:
-- HDMI output
-- uim:
- pkgsrc/devel/libgcroots needs aarch64 ifdefs
- http://openbsd-archive.7691.n7.nabble.com/fix-inputmethods-uim-on-aarch64-td357966.html
-- xfwm4: "could not find screen to manage".in startxfce4
-  check xfce4-session again
-- mikutter: crush in startup tutorial
-  https://twitter.com/ebijun/status/1086488794583392257
-- scribus
-- www/firefox 
- http://mail-index.netbsd.org/pkgsrc-changes/2019/02/26/msg188126.html
- thread '<unnamed>' panicked at 'Unable to find libclang: 
 
 Version: 
  `uname -v`
 
 dmesg:
  https://github.com/ebijun/NetBSD/blob/master/dmesg/aarch64/pinebook
+ https://github.com/ebijun/NetBSD/blob/master/dmesg/aarch64/pinebook-pro
 
 System image: dd to eMMC.
  http://www.invisible.ca/arm/
+
+ pinebook-pro:
+ 1. Insert microSD, boot (Linux from eMMC comes up), 
+ 2. hit "Restart", 
+ 3. It will boot from microSD. 
+ 4. dd'ing to eMMC for installation, the eMMC is faster
+- eMMC can disable with switch inside,and boot MicroSD.
+
+ Getting Started with NetBSD on the Pinebook Pro by Benny Siegert 
+ https://bentsukun.ch/posts/pinebook-pro-netbsd/
 
 sysinfo:
  https://github.com/ebijun/NetBSD/blob/master/pinebook/Update/sysinfo
@@ -153,8 +212,6 @@ pkgchk.conf:
  https://github.com/ebijun/NetBSD/blob/master/pinebook/Update/pkgchk.conf
   cp pkgchk.conf /usr/pkgsrc;pkg_add pkg_chk; pkg_chk -au
 
-packages:
- http://cdn.netbsd.org/pub/NetBSD/misc/jun/aarch64/aarch64/2019-06-22/
 --
 Jun Ebihara
 EOF

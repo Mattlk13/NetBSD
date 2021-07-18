@@ -1,34 +1,136 @@
-VERSION: :1,$s/2018-11-23/2018-11-23/g
-ISO:     :1,$s/201811172150Z/201811172150Z/g
-NetBSD:  :1,$s/8.99.26/8.99.26/g
-PKGSRC:  :1,$s/2018-11-23/2018-11-23/
+VERSION: :1,$s/2021-06-20/2021-06-20/g
+ISO:     :1,$s/202106182000Z/202106182000Z/g
+NetBSD:  :1,$s/9.99.85/9.99.85/g
+PKGSRC:  :1,$s/2021-1/2021-1/
 # Check MD5 filename before post this mail.
 # why dont we take off alone.
 
 To: port-armNetBSD.org@localhost
-Subject: 2018-12-08-netbsd-raspi-aarch64.img
+Subject: 2021-06-20-netbsd-raspi-aarch64.img
 From: Jun Ebihara <jun@soum.co.jp>
 
-I've updated 2018-12-08-netbsd-raspi-aarch64.img.gz for RPI3.
+I've updated 2021-06-20-netbsd-raspi-aarch64.img.gz for RPI4.
 
-http://cdn.netbsd.org/pub/NetBSD/misc/jun/aarch64/2018-12-08-aarch64/2018-12-08-netbsd-raspi-aarch64.img.gz
-http://cdn.netbsd.org/pub/NetBSD/misc/jun/aarch64/2018-12-08-aarch64/MD5
+http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/2021-06-20-aarch64/2021-06-20-netbsd-raspi-aarch64.img.gz
+http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/2021-06-20-aarch64/MD5
 
 Topics:
-- NetBSD/aarch64 image testing: System Clock Stops with JOBS=3 pkgbuild.
- Fix: apply ryo@'s patch,thanx
- https://gist.github.com/ryo/89faf74852c20a84af17a12704fe3e16
- this image contains patched kernel.
+- curl-7.77.0  
+- perl-5.34.0nb2
+- sudo-1.9.7p1
+- UEFI v1.28
+ https://github.com/pftf/RPi4/releases
+    Update TF-A binaries to version 2.5 [tianocore/edk2-non-osi@e1bb27f]
+    Ensure that ACPI reflects the UART setup from config.txt [tianocore/edk2-platforms@ea709f1]
+    Enable Bluetooth and UART in Windows OS [tianocore/edk2-platforms@086a3a3]
+
+- only for RPI4 
+  (fill dtb for RPI3?)
 - build script
  https://github.com/ebijun/NetBSD/tree/master/RPI/RPIimage/Image/aarch64
+- [Issue] Can't recognize DOS partition from Windows
+  Should I Use MBR version image?
+- [PR] diagnostic assertion "l->l_stat == LSONPROC" failed on RPI3
+  http://gnats.netbsd.org/56264
+- rpi cm4 + waveshare mini base board B seems stop after kernel load
+  http://mail-index.netbsd.org/port-arm/2021/06/30/msg007343.html
+
+sysinfo:
+ NetBSD-9.99.85 sh-20181212-20210618135752Z
+ userland-NetBSD-9.99.85/evbarm
+
+pkgsrc:
+ bash-5.1.8nb2 cairo-1.16.0nb4 curl-7.77.0 dillo-3.0.5nb10
+ fltk-1.3.6 fossil-2.15.2 gd-2.3.2nb1 git-base-2.32.0
+ gnutls-3.7.2 gtk2+-2.24.33nb2 gtk3+-3.24.29nb1 libffi-3.3nb5
+ libidn-1.37nb1 libidn2-2.3.1 libimagequant-2.15.1 libtasn1-4.17.0
+ libxml2-2.9.12 libxslt-1.1.34nb6 lintpkgsrc-4.96nb1 nettle-3.7.3
+ p11-kit-0.24.0 p5-Authen-SASL-2.16nb9 p5-Digest-HMAC-1.04nb11
+ p5-Email-Valid-1.202nb5 p5-Error-0.17029nb2 p5-GSSAPI-0.28nb12
+ p5-IO-CaptureOutput-1.1105nb2 p5-IO-Socket-INET6-2.72nb7
+ p5-IO-Socket-SSL-2.070nb1 p5-MailTools-2.21nb2 p5-Mozilla-CA-20200520nb1
+ p5-Net-DNS-1.30nb1 p5-Net-Domain-TLD-1.75nb5 p5-Net-IP-1.26nb9
+ p5-Net-LibIDN-0.12nb13 p5-Net-SMTP-SSL-1.04nb5 p5-Net-SSLeay-1.90nb1
+ p5-Socket6-0.29nb3 p5-TimeDate-2.33nb1 pcre2-10.37
+ perl-5.34.0nb2 png-1.6.37nb1 python38-3.8.10nb1 qt5-qtbase-5.15.2nb5
+ ruby26-gettext-3.3.8 ruby26-moneta-1.4.2 ruby26-oauth-0.5.6
+ ruby26-red-colors-0.2.0 ruby26-red-datasets-0.1.2
+ ruby26-zip-2.3.0 sudo-1.9.7p1 tcsh-6.22.02nb2
+ wget-1.21.1nb2 zstd-1.5.0
+
+RPI4 status:
+- boot via UEFI_VER=v1.28
+ https://github.com/pftf/RPi4/releases
+
+In this image,pre-setted RPI_EFI.fd
+ Advanced Configration
+ -> Limit RAM to 3GB	Disabled
+
+ SD/MMC Configration
+ -> uSD/eMMC Routing	Arasan SDHCI
+
+- HDMI: works
+- audio: vcaudio
+  http://mail-index.netbsd.org/source-changes-d/2021/01/22/msg013133.html
+- USB device: works
+- bwfm0 Wireless network:?
+  (works well on RPI3,not works on RPI4?)
+- Pi 4 Bootloader Configuration
+  https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2711_bootloader_config.md
 
 Update:
-- NetBSD-current 8.99.26 evbarm-aarch64 201811301120Z arm64.img from nyftp.
-- pre-installed packages:
-  none
+- NetBSD-current 9.99.85 evbarm-aarch64 202106182000Z arm64.img from nyftp.
+- boot via UEFI_VER=v1.26
+- pkginfo
+ https://github.com/ebijun/NetBSD/blob/master/RPI/RPIimage/Image/aarch64/pkginfo
+- sysinfo
+ https://github.com/ebijun/NetBSD/blob/master/RPI/RPIimage/Image/aarch64/sysinfo
+
+Update from 2021-04-15:
+ https://github.com/ebijun/NetBSD/commit/311716537054e1e42d5a3fef37a0c91faeb4d390#diff-cf95b12b2b3d346ddb27e4ed98c4177abc48e486232bc9e4ebd71a74da610dfb
+
+- mate/firefox/inkscape/libreoffice works well
+   pkg_add mate
+   pkg_add gvfs
+   pkg_add firefox
+   pkg_add firefox-l10n
+   pkg_add libreoffice
+   pkg_add inkscape
+   pkg_add gimp
+   pkg_add scribus
+   pkg_add py38-sphinx
+   pkg_add wxGTK30
+   pkg_add gnome-keyring
+
+- Sphinx with latexpdf
+  https://github.com/ebijun/NetBSD/blob/master/Guide/latexpdf.rst 
+
+- pkgin: upgrade failed
+- raspberry-pi userland: compile failed 
+
+Pre-installed packages:
+  bash
+  tcsh
+  vlgothic-ttf
+  icewm
+  xli
+  ruby26-mikutter
+  uim
+  fossil
+  sudo
+  git-base
+  zsh
+  mlterm
+  pkg_chk
+  lintpkgsrc
+  mozilla-rootcerts
+  dillo
+  medit
+  lrzsz
+
 - pre-build packages:
   See /etc/pkg_install.conf
-  PKG_PATH=http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/aarch64/2018-12-08/
+  PKG_PATH=http://cdn.netbsd.org/pub/NetBSD/misc/jun/raspberry-pi/aarch64/2021-1/
 
 pkgsrc: 
   # cd /usr
@@ -42,6 +144,20 @@ pkgsrc:
   # pkg_chk -un                   ... Update (listup)
   # pkg_chk -u                    ... Update
 
+EEPROM verson:
+ Check&update with Raspberry Pi OS (pi:raspberry)
+ pi@raspberrypi:~ $ cat /etc/default/rpi-eeprom-update 
+ FIRMWARE_RELEASE_STATUS="stable"
+ pi@raspberrypi:~ $ sudo rpi-eeprom-update
+ BCM2711 detected
+ Dedicated VL805 EEPROM detected
+ BOOTLOADER: up-to-date
+ CURRENT: Thu 16 Jul 15:15:46 UTC 2020 (1594912546)
+ LATEST: Thu 16 Jul 15:15:46 UTC 2020 (1594912546)
+ FW DIR: /lib/firmware/raspberrypi/bootloader/stable
+ VL805: up-to-date
+ CURRENT: 000138a1
+ LATEST: 000138a1
 
 --
 Jun Ebihara

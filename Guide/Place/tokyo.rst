@@ -1,5 +1,5 @@
 .. 
- Copyright (c) 2013-9 Jun Ebihara All rights reserved.
+ Copyright (c) 2013-2021 Jun Ebihara All rights reserved.
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
  are met:
@@ -66,7 +66,12 @@ Maps:
  2017 Fall,9/9-10,1100,57,明星大学
  2018 Spring,2/23-24,1200,62,明星大学
  2018 Fall,10/27-28,1050,62,明星大学
- 2019 Spring,2/22-23,,68,明星大学
+ 2019 Spring,2/22-23,1010,68,明星大学
+ 2019 Fall,11/23-24,830,63,明星大学
+ 2020 Spling,4/24-25,500,19,オンライン
+ 2020 Fall,10/23-24,500,15,オンライン
+ 2021 Spring,3/6-7,,26,オンライン
+
 
 観光ガイドバックナンバー
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -79,6 +84,9 @@ https://github.com/ebijun/osc-demo　にあります。
  :widths: 20 30 80
 
  No,イベント,URL
+ 164,OSC2021東京春, http://www.re.soum.co.jp/~jun/OSC2021tokyospring.pdf
+ 159,OSC2020東京秋, http://www.re.soum.co.jp/~jun/OSC2020tokyofall.pdf
+ 152,OSC2019東京秋, http://www.re.soum.co.jp/~jun/OSC2019tokyofall.pdf
  139,OSC2019東京春, http://www.re.soum.co.jp/~jun/OSC2019tokyospring.pdf
  132,OSC2018東京秋, http://www.re.soum.co.jp/~jun/OSC2018tokyofall.pdf
  121,OSC2018東京春, http://www.re.soum.co.jp/~jun/OSC2018tokyospring.pdf
@@ -104,6 +112,9 @@ OSC東京まとめ
 .. csv-table::
  :widths: 70 70
 
+ オープンソースカンファレンス2021 Online/SpringNetBSDのご紹介 の記録,https://togetter.com/li/1675363
+ OSC2020東京秋 BSDなひととき の記録,https://togetter.com/li/1611536
+ OSC2019東京秋 NetBSDブース展示の記録,https://togetter.com/li/1433822
  OSC2019東京春 NetBSDブース展示の記録, https://togetter.com/li/1321833
  OSC2018東京秋 NetBSDブース展示の記録, https://togetter.com/li/1281694
  OSC2018東京春 NetBSDブース展示の記録, https://togetter.com/li/1202581
@@ -126,34 +137,33 @@ OSC東京まとめ
 .. csv-table::
  :widths: 25 15 60
 
- いくどん柿生店,柿生,村人が集う焼肉店。合言葉は「レバー大辛」。
- サトー電気,町田/川崎,エレックセンターにあった部品が一部ある
- アボットチョイス,町田,21タップ
+ いくどん柿生店,柿生,村人が集う焼肉店。いしはらさんの合言葉は「レバー大辛」。
+ VERTERE,奥多摩,クラフトビール 月金14:00-19:30 土日12:00-19:30
+ Snark Liquidworks,要町,クラフトビールとDEC 水木土日 12:00-21:00 金17:00-21:00
+ riot beer,祖師ヶ谷大蔵,クラフトビール 木〜土15:00-21:00 土日13:00-18:00
+ フタコビール,二子玉川,クラフトビール 11:30-23:00
+ エビナビール,海老名,クラフトビール 月~金17:00-22:30 土日14:00-22:30
  TDM1874,十日市場,ブルワリー+酒屋。IPA #バージョン番号
+ さかづきブルーイング,北千住,クラフトビール 水〜金16:00-22:30 土日13:00-22:30
+ アボットチョイス,町田,21タップ
+ GreenBud！！,本厚木,村人が集うヨーロッパビール店
  ピガール,三軒茶屋,オリジナルビールL.S.D(Love Saison Darling)
  ノベルクラフト,千歳烏山,18:00-
  Welders diner,石神井公園,11:00-23:00
  グレムリン,幡ヶ谷,15:00- 弊社から60秒でクラフトビール。
+ サトー電気,町田/川崎/小机,エレックセンターにあった部品が一部ある
  パパのいうことを聞きなさい!,中央大学,ひな役がちゃんおぷ五十嵐裕美さんだお。
- 電磁砲,多摩モノレール,レールガン モノレール で検索。風力発電の風車不足。
- 立喰酒場buri,恵比寿,壁一面のカップ酒。フローズンワンカップ。
- taproom,中目黒,ベアードビール直営。相撲千秋楽の日が楽しい。
- Mr.デンジャー,東あずま,大型（肉が）ステーキ店。デンジャーパーティー。
  ポパイ,両国,ビール屋さんが研修に来る店。ぷらっと後藤さんが常連。
  古書ドリス,鶯谷,幻想図書を扱う古書店。徳島から移転。
+ 古書ほうろう,根津,池之端門前
  すた城,東小金井,NBUGみずのさんと事務局長が育った居酒屋。しこ天==じゃこ天。
  富士ランチ,東小金井,大盛りとは何か考える。
  加賀屋,本郷三丁目,もつMLというBSD関連の集まりがありましてな。
- GreenBud！！,本厚木,村人が集うヨーロッパビール店
- 丹青通商,町家,AppleII 5000円 マイコンマニュアル&ぱふ
+ 丹青通商,亀戸,AppleII 5000円 マイコンマニュアル&ぱふ
  三ちゃん,荻窪,ピングドラムに出てきたラーメン店。スタミナラーメン。
  ジャーマンホビードラ,代々木八幡,飛行機模型が天井まで積んである 
  ピンバイス,門前仲町,個人経営の粋なプラモデル店
  ムーンライト,向ヶ丘遊園,ビール醸造所。季節のフルーツビール。
- 所沢航空発祥記念館,航空公園,飛燕のエンジンがある。
- 森下文化センター,森下,田河水泡のらくろ館
- 3331,末広町,ギャラリー＆はんだづけカフェ
- 科学教材社,神田,模型とラジオの広告。まだやってます
  ヌビチヌ,野毛,素晴らしいスタンディングビアバー。
  大衆,生麦,焼肉ジンギスカンホッピー焼肉ジンギスカンホッピー。
  たん清,秋葉原,BSDマガジンの焼肉夜話。
@@ -161,7 +171,6 @@ OSC東京まとめ
  ヴィオロン,阿佐谷,名曲喫茶。真空管アンプの最終目的地。
  Galaxy,原宿,マニアックラヴ＆シャッフルマスター＆REBOOT
  池田電子,町田,町田市金森187-20 木曜定休 うずたかく積まれている
- MURAOKA,つきみ野,中古パソコン　日曜定休
  
 OSC東京主な展示物
 ~~~~~~~~~~~~~~~~~
@@ -169,7 +178,9 @@ OSC東京主な展示物
 .. csv-table::
  :widths: 15 15 60
 
- 2019/10/27-28,OSC2018東京秋,Linux on Nintendo64
+ 2019/11/23-24,OSC2019東京秋,NetBSD/zaurus8.1
+ 2019/2/22-23,OSC2018東京春,Zrouter FreeBSD/mips NetBSD/nintendo64
+ 2018/10/27-28,OSC2018東京秋,Linux on Nintendo64
  2018/2/23-24,OSC2018東京春,RPI3+XM6i GPD Sparcbook BananaPis 
  2017/09/9-10,OSC2017東京秋,OrangePi One NanoPi RPI3+XM6i+NetBSD/x68k
  2017/03/10-11,OSC2017東京春,RPI3+XM6i+NetBSD/x68k RPI2+omxplayer NetWalker WZERO3 GPDWIN
@@ -197,6 +208,40 @@ OSC東京主な展示物
  2006/3/17-18,OSC2006東京春,hpcmips/sh/arm
  2005/3/25-26,OSC2005,hpcmips/sh/arm
  2004/9/4,OSC2004,hpcmips/sh/arm
+
+2019年
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image::  ../Picture/2019/11/23/DSC_8063.JPG
+.. image::  ../Picture/2019/11/23/DSC_8065.JPG
+.. image::  ../Picture/2019/11/23/DSC_8066.JPG
+.. image::  ../Picture/2019/11/23/DSC_8067.JPG
+.. image::  ../Picture/2019/11/23/DSC_8068.JPG
+.. image::  ../Picture/2019/11/23/DSC_8069.JPG
+.. image::  ../Picture/2019/11/23/DSC_8070.JPG
+.. image::  ../Picture/2019/11/24/DSC_8085.JPG
+.. image::  ../Picture/2019/11/24/DSC_8086.JPG
+.. image::  ../Picture/2019/11/24/DSC_8087.JPG
+.. image::  ../Picture/2019/11/24/DSC_8088.JPG
+.. image::  ../Picture/2019/11/24/DSC_8089.JPG
+.. image::  ../Picture/2019/11/24/DSC_8090.JPG
+.. image::  ../Picture/2019/11/24/DSC_8091.JPG
+.. image::  ../Picture/2019/11/24/DSC_8092.JPG
+.. image::  ../Picture/2019/11/24/DSC_8093.JPG
+.. image::  ../Picture/2019/11/24/DSC_8094.JPG
+.. image::  ../Picture/2019/11/24/DSC_8095.JPG
+.. image::  ../Picture/2019/11/24/DSC_8096.JPG
+.. image::  ../Picture/2019/11/24/DSC_8097.JPG
+.. image::  ../Picture/2019/02/22/DSC_6713.JPG
+.. image::  ../Picture/2019/02/22/DSC_6715.JPG
+.. image::  ../Picture/2019/02/22/DSC_6722.JPG
+.. image::  ../Picture/2019/02/22/DSC_6724.JPG
+.. image::  ../Picture/2019/02/22/DSC_6725.JPG
+.. image::  ../Picture/2019/02/22/DSC_6726.JPG
+.. image::  ../Picture/2019/02/23/DSC_6727.JPG
+.. image::  ../Picture/2019/02/23/DSC_6733.JPG
+.. image::  ../Picture/2019/02/23/DSC_6735.JPG
+.. image::  ../Picture/2019/02/23/DSC_6738.JPG
 
 2018年
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

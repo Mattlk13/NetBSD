@@ -3,7 +3,8 @@ tcsh
 vlgothic-ttf
 icewm
 xli
-ruby24-mikutter
+ruby26-mikutter
+ruby26-mikutter-plugins-twitter
 uim
 fossil
 raspberrypi-userland
@@ -16,3 +17,5 @@ lintpkgsrc
 mozilla-rootcerts
 dillo
 medit
+lrzsz
+pkgin
